@@ -51,6 +51,17 @@ class AuthController {
             next(error);
         }
     }
+
+    async logout(req, res, next) {
+        try {
+            const { refreshToken } = req.body;
+            const result = await authService.logout(refreshToken);
+            
+            res.json(result);
+        } catch (error) {
+            next(error);
+        }
+    }
 }
 
 module.exports = new AuthController();
